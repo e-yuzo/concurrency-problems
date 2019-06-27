@@ -3,7 +3,6 @@ use std::sync::{Arc};
 use std::time::Duration;
 use std::sync::RwLock;
 
-
 struct Writer {
     name: String,
 }
@@ -93,5 +92,4 @@ fn main() {
     for handle in writers_handles {
         handle.join().unwrap();
     }
-
 }
