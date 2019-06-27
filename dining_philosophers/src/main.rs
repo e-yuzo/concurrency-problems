@@ -13,6 +13,7 @@ struct Philosopher {
 }
 
 impl Philosopher {
+
     fn new(name: &str, left: usize, right: usize) -> Philosopher {
         Philosopher {
             name: name.to_string(),
@@ -22,25 +23,33 @@ impl Philosopher {
     }
 
     fn eat(&self, table: &Table) {
-        // place while true here
         loop {
             if self.name == "Judith Butler" {
+                println!("{} is THINKING.", self.name);
+                thread::sleep(Duration::new(1, 0)); // Applies a 'simultaneity fudge factor'
+
+                println!("{} is HUNGRY.", self.name);
                 let _left = table.forks[self.right].lock().unwrap();
-                thread::sleep(Duration::new(1, 0)); // Applies a 'simultaneity fudge factor'
                 let _right = table.forks[self.left].lock().unwrap();
-                println!("{} is eating.", self.name);
-                thread::sleep(Duration::new(1, 0));
-                println!("{} is done eating.", self.name);
+
+                println!("{} is EATING.", self.name);
+                thread::sleep(Duration::new(2, 0));
+                println!("{} is DONE EATING.", self.name);
             } else {
-                let _left = table.forks[self.left].lock().unwrap();
+                println!("{} is THINKING.", self.name);
                 thread::sleep(Duration::new(1, 0)); // Applies a 'simultaneity fudge factor'
+
+                println!("{} is HUNGRY.", self.name);
+                let _left = table.forks[self.left].lock().unwrap();
                 let _right = table.forks[self.right].lock().unwrap();
-                println!("{} is eating.", self.name);
-                thread::sleep(Duration::new(1, 0));
-                println!("{} is done eating.", self.name);
+
+                println!("{} is EATING.", self.name);
+                thread::sleep(Duration::new(2, 0));
+                println!("{} is DONE EATING.", self.name);
             }
         }
     }
+
 }
 
 fn main() {
@@ -66,6 +75,7 @@ fn main() {
         thread::spawn(move || {
             philosopher.eat(&table);
         })
+
     }).collect();
 
     for handle in handles {
