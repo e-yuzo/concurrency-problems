@@ -1,5 +1,9 @@
 # Concurrency Problems with Rust Lang
 Some computing problems involving concurrency.
+ 
+ - Install Rust.
+ - ``cd [problem]``
+ - ``cargo run``
 
 ## Projeto: Escrita na Wiki e Seminário sobre LP ou API de concorrência
 
