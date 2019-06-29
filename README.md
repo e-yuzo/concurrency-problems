@@ -1,7 +1,7 @@
 # Concurrency Problems with Rust Lang
 Some computing problems involving concurrency.
  
- - Install Rust.
+ - Install ``Rust`` and ``Cargo``.
  - ``cd [problem]``
  - ``cargo run``
 
