@@ -1,6 +1,6 @@
 use std::thread;
 use std::sync::{Arc};
-use std::time::Duration;
+// use std::time::Duration;
 use std::sync::RwLock;
 
 struct Writer {
@@ -24,7 +24,7 @@ impl Writer {
                 println!("{} UPDATED value to {}", self.name, *write_guard);
             }
             // quando o guard sai do escopo, escritor perde o lock
-            thread::sleep(Duration::from_millis(1000));
+            // thread::sleep(Duration::from_millis(1000));
         }
     }
 
@@ -50,7 +50,7 @@ impl Reader {
                 println!("{} READ value {}", self.name, *read_guard);
             }
             // quando o guard sai do escopo, leitor perde o lock
-            thread::sleep(Duration::from_millis(500));
+            // thread::sleep(Duration::from_millis(500));
         }
     }
 

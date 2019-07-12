@@ -1,6 +1,7 @@
 use std::thread;
 use std::sync::{Mutex, Arc};
 use std::time::Duration;
+use rand::{self, Rng};
 
 // struct que representa uma mesa com vários garfos
 struct Table {
@@ -29,11 +30,13 @@ impl Philosopher {
 
     fn eat(&self, table: &Table) {
         loop {
+            let mut rng = rand::thread_rng();
             // Judith Butler pega o garfo direito e esquerdo (nesta equência)
             if self.name == "Judith Butler" {
                 println!("{} is THINKING.", self.name);
                 // simulação do tempo que o filósofo gasta pensando
-                thread::sleep(Duration::new(1, 0));
+                let die = rng.gen_range(1, 1000);
+                thread::sleep(Duration::from_millis(die));
 
                 println!("{} is HUNGRY.", self.name);
                 // filósofo tenta pegar os garfos
@@ -42,13 +45,15 @@ impl Philosopher {
 
                 println!("{} is EATING.", self.name);
                 // simulação do tempo que o filósofo gasta comendo
-                thread::sleep(Duration::new(2, 0));
+                let die = rng.gen_range(1, 1000);
+                thread::sleep(Duration::from_millis(die));
                 println!("{} is DONE EATING.", self.name);
             // outros filósofos pegam o garfo esquerdo e direito (nesta sequência)
             } else {
                 println!("{} is THINKING.", self.name);
                 // simulação do tempo que o filósofo gasta pensando
-                thread::sleep(Duration::new(1, 0));
+                let die = rng.gen_range(1, 1000);
+                thread::sleep(Duration::from_millis(die));
 
                 println!("{} is HUNGRY.", self.name);
                 // filósofo tenta pegar os garfos
@@ -57,7 +62,8 @@ impl Philosopher {
 
                 println!("{} is EATING.", self.name);
                 // simulação do tempo que o filósofo gasta comendo
-                thread::sleep(Duration::new(2, 0));
+                let die = rng.gen_range(1, 1000);
+                thread::sleep(Duration::from_millis(die));
                 println!("{} is DONE EATING.", self.name);
             }
         }
